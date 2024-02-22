@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\ProductController;
+
+use App\Http\Controllers\Admin\DashboardController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -83,23 +87,29 @@ Route::get('/', function () {
 //     });
 // });
 
-Route::prefix('categories')->group(function () {
-    //   danh sách chuyên mục
-    Route::get('/', [CategoriesController::class, 'index'])->name('categories.list');
-    //   Lấy chi tiết một chuyên mục (áp dụng show form một chuyên mục )
-    Route::get('/edit/{id}', [CategoriesController::class, 'getCategory'])->name('categories.edit');;
-    //   Xử lý update chuyên mục 
-    Route::post('/edit/{id}', [CategoriesController::class, 'updateCategory']);
-    // hiện thị form add dữ liệu 
-    Route::get('/add', [CategoriesController::class, 'addCategory'])->name('categories.add');;
-    //   xử lý hêm chuyên mục
-    Route::post('/add', [CategoriesController::class, 'handleAddCategory']);
-    // xóa chuyên mục
-    Route::delete('/delete/{id}', [CategoriesController::class, 'deleteCategory'])->name('categories.delete');;
-});
+// Route::prefix('categories')->group(function () {
+//     //   danh sách chuyên mục
+//     Route::get('/', [CategoriesController::class, 'index'])->name('categories.list');
+//     //   Lấy chi tiết một chuyên mục (áp dụng show form một chuyên mục )
+//     Route::get('/edit/{id}', [CategoriesController::class, 'getCategory'])->name('categories.edit');;
+//     //   Xử lý update chuyên mục 
+//     Route::post('/edit/{id}', [CategoriesController::class, 'updateCategory']);
+//     // hiện thị form add dữ liệu 
+//     Route::get('/add', [CategoriesController::class, 'addCategory'])->name('categories.add');;
+//     //   xử lý hêm chuyên mục
+//     Route::post('/add', [CategoriesController::class, 'handleAddCategory']);
+//     // xóa chuyên mục
+//     Route::delete('/delete/{id}', [CategoriesController::class, 'deleteCategory'])->name('categories.delete');;
+// });
 //  admin route
 Route::prefix('admin')->group(function () {
 
     // Route::resource('/products',[PhotoController::class,]);
 
+});
+Route::get('/', function () {
+    return '<h1 style="text-align:center:">Trang chủ unicode<\h1>';
+});
+Route::middleware('auth.admin')->prefix('admin')->group(function () {
+    Route::get('/', [DashboardController::class, 'index']);
 });
