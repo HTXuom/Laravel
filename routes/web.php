@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\DashboardController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -113,3 +114,8 @@ Route::get('/', function () {
 Route::middleware('auth.admin')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
 });
+
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('sản phẩm/{id}', [HomeController::class, 'getProductDetail']);
