@@ -119,3 +119,7 @@ Route::middleware('auth.admin')->prefix('admin')->group(function () {
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('sản phẩm/{id}', [HomeController::class, 'getProductDetail']);
+
+// Route::middleware('auth.admin')->prefix('admin')->group(function()){
+//     Route::get('/',[D])
+// };
