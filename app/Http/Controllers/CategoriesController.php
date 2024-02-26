@@ -83,4 +83,35 @@ class CategoriesController extends Controller
     {
         return 'Submit xóa chuyên mục :' . $id;
     }
+
+    public function getFile()
+    {
+        return view('clients/categories/file');
+    }
+
+
+    public function handleFile(Request $request)
+    {
+        // $file = $request->file('photo');
+        if ($request->hasFile('photo')) {
+            if ($file = $request->isValid()) {
+                $file = $request->phpto;
+                // $path = $file->path();
+                $ext = $file->path();
+                // $path = $file->store('file-txt', 'local');
+                // $path = $file->storeAs('file', 'khoa hoc.txt');
+
+                // $fileName = $file->getClientOriginalName();
+
+                //đổi tên 
+
+                $fileName = md5(uniqid()) . '.' . $ext;
+                dd($fileName);
+            } else {
+                return 'update không thành công';
+            }
+        } else {
+            return 'vui lòng chọn file';
+        }
+    }
 }

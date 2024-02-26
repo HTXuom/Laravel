@@ -113,7 +113,25 @@ Route::get('/', function () {
 });
 Route::middleware('auth.admin')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
+
+    //hiển thị form dữ liệu 
+
+    Route::get('/add', [CategoriesController::class, 'handleAddCategory'])->name('Categories');
+    // xử lý chuyên mục
+    Route::post('/add', [CategoriesController::class, 'handleAddCategory']);
+    //XÓA CHUYÊN MỤC
+
+    Route::post('/delete/{id}', [CategoriesController::class, 'deleteCategory']);
+
+    //xử lý chuyên mục
+    Route::post('/upload', [
+        CategoriesController::class, 'handlFile'
+    ]);
 });
+
+
+
+
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');

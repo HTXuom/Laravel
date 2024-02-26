@@ -2,6 +2,7 @@
 <form method="POST" action="<?php echo route('categories.add'); ?>">
     <div>
         <input type="text" name="category_name" placeholder="tên chuyên mục">
+        value="<?php echo old('category_name', 'Mặc định'); ?>">
         <?php echo csrf_field(); ?>
         <?php echo csrf_token(); ?>
         <button type="submit"> thêm chuyên mục </button>
