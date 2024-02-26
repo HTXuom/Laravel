@@ -6,36 +6,19 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public $data = [];
     public function index()
     {
-        $title = 'học lập trình web tại unicode';
-        $content = 'học lập trình Laravel 8.x tại unicode';
-        // [
-        //     'title'=>$title,
-        //     'content'=>$content
-        // ]
-        // compact('title','content')
-
-        // return view('home')->with(['title'=>$title, 'content'=>$content]);
-        // return View::make('home')->with(['title' => $title, 'content' => $content]);
-
-        // $contenView = view('home')->render();
-        // $contentView = $contentView->render();
-        // dd($contentView);
+        $this->data['welcome'] = 'học lập trình Laravel tại <b> Unicode</b>';
+        $this->data['content'] = '<h3> chương 1: nhập môn lập trình';
 
 
-    }
-    public function getNews()
-    {
-        return 'Danh scahs tin tức';
-    }
-    public function getCategories($id)
-    {
-        return 'Chuyên mục:' . $id;
-    }
-    public function getProductDetail($id)
-    {
-        // return $id;
-        return view('clients.products.detail', compact('id'));
+
+        $this->data['index'] = 1;
+        $this->data['dataArr'] = [];
+        $this->data['check'] = true;
+
+
+        return view('home', $this->data);
     }
 }

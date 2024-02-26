@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,7 +15,7 @@
     </head>
     <main>
         <h1>Nội dung-unicode </h1>
-        <h2><?php echo $content; ?></h2>
+      h2>
     </main>
 
     <head>
@@ -24,4 +24,15 @@
 
 </body>
 
-</html>
+</html> -->
+<h1>Trang chủ Unicode</h1>
+<h2>{{!empty(request()->keyword)?request()->keyword:'không có gì'}}</h2>
+<div class=" container">
+    {!! !empty($content)?$content:fale!!}
+
+</div>
+<hr>
+@for ($i =1;$i<=10; $i++) <p> phần tử thứ: {{$i}}</p>
+    @if ($i==5)
+    @break
+    @endfor
