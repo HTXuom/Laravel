@@ -4,11 +4,11 @@
 @endsection
 
 @section('sidebar')
-<h3> Home Sidebar</h3>
+<h3> Products Sidebar</h3>
 @endsection
 
 @section('content')
-<h1>Trang chủ</h1>
+<h1>san pham</h1>
 <button type='button' class='show'>Show</button>
 @endsection
 
@@ -24,14 +24,7 @@
 @endsection
 @section('js')
 document.querySelector{'.show'}.onclik = function(){
-   alert('thành công'); 
+alert('thành công');
 }
 
 @endsection
-
-
-
-
-
-
-
