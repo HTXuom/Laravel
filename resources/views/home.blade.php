@@ -32,7 +32,16 @@
 
 </div>
 <hr>
-@for ($i =1;$i<=10; $i++) <p> phần tử thứ: {{$i}}</p>
+{{-- @for ($i =1;$i<=10; $i++) <p> phần tử thứ: {{$i}}</p>
     @if ($i==5)
     @break
-    @endfor
+    @endfor --}}
+    @if (!empty($message))
+<div class="msg"> {{$message}}
+</div>
+@endif
+@php 
+$message ='Đặt hàng thành công';
+@endphp
+@include('parts.notice');
+
