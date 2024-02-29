@@ -9,6 +9,8 @@
 
 @section('content')
 <h1>Trang chủ</h1>
+@include('clients.contents.slide')
+@include('clients.contents.about')
 <button type='button' class='show'>Show</button>
 @endsection
 

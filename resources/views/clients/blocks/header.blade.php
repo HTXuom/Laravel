@@ -1,0 +1,40 @@
+<header class='py-3 border shadow'>
+    <div class='container'>
+    <div class='row'>
+        <div class="col-4">
+            <h1>Unicode</h1>
+
+        </div>
+
+        <div class='col-8'>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class='nav-link active' aria-current="page" href="#">Trang chủ</a>
+
+                </li>
+                <li class="nav-item">
+                    <a class='nav-link ' href="#">Gioi thiệu</a>
+
+                </li>
+                <li class="nav-item">
+                    <a class='nav-link ' href="#">Sản phẩm</a>
+
+                </li>
+                <li class="nav-item">
+                <a class='nav-link ' href="#">Dịch vụ </a>
+                </li>
+                <li class="nav-item">
+                <a class='nav-link ' href="#">Tin tức</a>
+                </li>
+                <li class="nav-item">
+                <a class='nav-link ' href="#">Liên hệ</a>
+                </li>
+                
+        
+            
+
+            </ul>
+        </div>
+    </div>
+    </div>
+</header>

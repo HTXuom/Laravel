@@ -3,9 +3,9 @@
 {{$title}}
 @endsection
 
-@section('sidebar')
+<!-- @section('sidebar')
 <h3> Products Sidebar</h3>
-@endsection
+@endsection -->
 
 @section('content')
 <h1>san pham</h1>

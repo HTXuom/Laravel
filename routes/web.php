@@ -21,5 +21,6 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/san-pham', [HomeController::class, 'Products']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/san-pham', [HomeController::class, 'Products'])->name('product');
+
