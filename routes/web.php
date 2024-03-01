@@ -24,3 +24,14 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/san-pham', [HomeController::class, 'Products'])->name('product');
 
+Route::get('/them-san-pham', [HomeController::class, 'getAdd']);
+Route::get('/themsan-pham', [HomeController::class, 'postAdd']);
+
+
+Route::get('/', function () {
+    return 'học lập trình ';
+});
+Route::puy('/them-san-pham',[HomeController::class, 'putAdd']);
+
+
+

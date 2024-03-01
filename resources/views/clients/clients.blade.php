@@ -1,5 +1,3 @@
-
-
 @extends('layoouts.client')
 @section('title')
 {{$title}}
@@ -24,3 +22,10 @@
 
 
 @endsection
+
+
+
+
+
+
+
