@@ -18,6 +18,11 @@
 <p> Không phải môi trường dev</p>
 @else 
 <p>Môi trường text</p>
+{{-- <x-package-alerrt/>
+<x-inputs-Button/> --}}
+<x-alerrt type="info" :content ="$message" data-icon/> 
+
+
 <button type='button' class='show'>Show</button>
 
 @endsection

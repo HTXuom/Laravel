@@ -32,6 +32,17 @@ Route::get('/', function () {
     return 'học lập trình ';
 });
 Route::puy('/them-san-pham',[HomeController::class, 'putAdd']);
+// Route::puy('lay-thong-tin', [HomeController::class, 'putArr']);
+// Route::get('demo-response', function () {
+//     return view('học lập trình ');
+// });
 
+// Route::get('demo-request-2',function (Request $request){
+//     $request =(new Request ())->cookie('unicode','Trang PHP -Laravel',30);
+//     return $request ;
+// });
+// Route::get('demo-request-2', function (Request $request) {
+//     return $request = (new Request())->cookie('unicode', 'Trang PHP -Laravel', 30);
+// });
 
 

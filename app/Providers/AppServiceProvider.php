@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use App\view\Components\Alert;
+use App\view\Components\Inputs\Button;
+use App\view\Components\Forms\Button as FormButton;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,10 +17,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Blade::directive('env', function ($value) {
-            if(config('app.env')===$value){
+            if (config('app.env') === $value) {
                 return true;
             }
             return false;
         });
+        // Blade:: component ('package', Alert::class);
+        // Blade::component('button', button::class);
+        //  Blade::component('form-button', FormButton::class);
+
     }
 }
