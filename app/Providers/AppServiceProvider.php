@@ -12,18 +12,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Blade::directive('datetime', function ($expression) {
-            // Parse the expression as a date string
-          
-            $dateObject = date_create($expression);
-
-            // Check if the date object is not empty
-            if (!empty($dateObject)) {
-                // Format the date and return it as a PHP string
-                return "<?php echo $dateObject->('d/m/Y H:i:s'); ?>";
+        Blade::directive('env', function ($value) {
+            if(config('app.env')===$value){
+                return true;
             }
-
-            // If the date object is empty, return false
             return false;
         });
     }

@@ -11,7 +11,15 @@
 <h1>Trang chủ</h1>
 @include('clients.contents.slide')
 @include('clients.contents.about')
+
+@env('production')
+<p>Moi trường production </p>
+@elseenv('text')
+<p> Không phải môi trường dev</p>
+@else 
+<p>Môi trường text</p>
 <button type='button' class='show'>Show</button>
+
 @endsection
 
 @section('css')
@@ -26,9 +34,7 @@
 </style>
 @endsection
 @section('js')
-document.querySelector{'.show'}.onclik = function(){
-   alert('thành công'); 
-}
+
 
 @endsection
 
