@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\ProductController;
 
 use App\Http\Controllers\Admin\DashboardController;
+use Illuminate\Http\Response;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 
@@ -32,6 +33,7 @@ Route::get('/', function () {
     return 'học lập trình ';
 });
 Route::puy('/them-san-pham',[HomeController::class, 'putAdd']);
+Route::get('/lay-thong-tin', [HomeController::class, 'getArr']);
 // Route::puy('lay-thong-tin', [HomeController::class, 'putArr']);
 // Route::get('demo-response', function () {
 //     return view('học lập trình ');
@@ -45,4 +47,39 @@ Route::puy('/them-san-pham',[HomeController::class, 'putAdd']);
 //     return $request = (new Request())->cookie('unicode', 'Trang PHP -Laravel', 30);
 // });
 
+// Route::get('demo-response',function(){
+//     // return 'học laravel tại unicode';
+//     $contentArr =[
+//         'name' => 'laravel 8.x',
+//         'lesson'=>'khóa học lập trình laravel',
+//         'academy'=> 'unicode Acdemy'
+//     ];
+//     return $contentArr;
+
+// })
+
+Route::get('demo-response', function () {
+   
+    $response =(new Response())->cookie('unicode','Training PHP-Laravel',30);
+    
+
+    return $response;
+});
+Route::get('demo-response2', function (Request $request) {
+
+    $response = (new Response())->cookie('unicode', 'Training PHP', 30);
+
+
+    return $request->cookie('unicode');
+});
+
+Route::get('demo-response', function () {
+
+    $response = response()->view('clients.demo-test', [
+        'title' => 'học lập trình tại unicode'
+    ])->header('Content-Type', 'application/json')
+        ->header('API-Key', '123456');
+
+    return $response;
+});
 
