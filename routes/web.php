@@ -60,26 +60,30 @@ Route::get('/lay-thong-tin', [HomeController::class, 'getArr']);
 
 Route::get('demo-response', function () {
    
-    $response =(new Response())->cookie('unicode','Training PHP-Laravel',30);
-    
-
-    return $response;
-});
-Route::get('demo-response2', function (Request $request) {
-
-    $response = (new Response())->cookie('unicode', 'Training PHP', 30);
+   return view('clents.demo-test');
 
 
-    return $request->cookie('unicode');
-});
+   
+})->name('demo-response');
 
-Route::get('demo-response', function () {
 
-    $response = response()->view('clients.demo-test', [
-        'title' => 'học lập trình tại unicode'
-    ])->header('Content-Type', 'application/json')
-        ->header('API-Key', '123456');
+Route::post('demo-response', function (Request $request) {
 
-    return $response;
+    if (!empty ($request->usename)){
+        return back()->wittInput()->with('mess','Validate không thganhf công');
+
+    }
+
+    return redirect(route('demo-response'))->with('mess','Validate không thganhf công');
 });
 
+// Route::get('demo-response', function () {
+
+//     $response = response()->view('clients.demo-test', [
+//         'title' => 'học lập trình tại unicode'
+//     ])->header('Content-Type', 'application/json')
+//         ->header('API-Key', '123456');
+
+//     return $response;
+// });
+ 
