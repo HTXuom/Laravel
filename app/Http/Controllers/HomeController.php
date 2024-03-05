@@ -45,4 +45,34 @@ class HomeController extends Controller
 
         return $contentArr;
     }
+
+    public function downloadImage(Request $request){
+        if(!empty($request->image)){
+            $image = trim($request->image);
+            $fileName ='image_'.uniqid().'.jpg';
+            return response()->streamDownload(function()use($image){
+                $imageContent = file_get_contents($image);
+                echo $imageContent;
+
+            }.$fileName);
+            return response()->download ($image,$fileName);
+        }
+        
+    }
+    public function downloadDoc(Request $request)
+    {
+        if (!empty($request->file)) {
+            $file= trim($request->file);
+            $fileName = 'tai_lieu' . uniqid() . '.pdf';
+            return response()->streamDownload(function () use ($file) {
+                $imageContent = file_get_contents($file);
+                echo $imageContent;
+            } . $fileName);
+
+            $headers=[
+                'content-Type'=>'application/pdf'
+            ];
+            return response()->download($file, $fileName);
+        }
+    }
 }

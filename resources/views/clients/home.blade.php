@@ -20,7 +20,12 @@
 <p>Môi trường text</p>
 {{-- <x-package-alerrt/>
 <x-inputs-Button/> --}}
-<x-alerrt type="info" :content ="$message" data-icon/> 
+<x-alerrt type="info" :content ="$message" data-icon="youtube"/>
+<img src="" alt="">
+ 
+<p> <a href="{{route('download-image').'?image'.public_path('stogare/THM_zing.jpeg')}}" class="btn btn-primary">Download ảnh</a></p>
+
+<p> <a href="{{route('download-image').'?image'.public_path('stogare/THM_zing.jpeg')}}" class="btn btn-primary">Download ảnh</a></p>
 
 
 <button type='button' class='show'>Show</button>

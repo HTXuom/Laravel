@@ -86,4 +86,4 @@ Route::post('demo-response', function (Request $request) {
 
 //     return $response;
 // });
- 
+ Route::get('download-image/{link}',[HomeController::class,'downloadImage'])->name('download-image');
