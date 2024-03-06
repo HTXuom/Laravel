@@ -23,13 +23,16 @@
             <label for="">tên sản phẩm</label>
             <label type="text" class="form-control" name ="product_name" aria-placeholder="tên sản phẩm ..."value="{{old('product_name')}}"></label>
             @error ('product_name')
-         <span style="color:red">vui lòng nhập tên sản phẩm </span> 
+         <span style="color:red">{{$message}} </span> 
            @enderror
         </div>
         <div class="mb-3">
 
           <label for="">giá sản phẩm</label>
             <label type="text" class="form-control" name ="product_name" aria-placeholder="giá sản phẩm ..."value="{{old('product_price')}}"></label>
+                @error ('product_price')
+         <span style="color:red">{{$message}}</span> 
+           @enderror
 
         </div>
     @enderror)
