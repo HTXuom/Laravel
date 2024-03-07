@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Auth\Events\Validated;
 
 class HomeController extends Controller
 {
@@ -18,13 +19,38 @@ class HomeController extends Controller
         $this->data['title'] = 'sản phẩm';
         return view('clients.home', $this->data);
     }
-    public function getAdd(){
-        $this->data['title'] ='thêm sản phẩm';
-        $this->data['errorMessage']= 'vui lòng kiểm tra dữa liệu';
-        return view('clients.add', $this->data);
 
-    }
-   function postAdd( ){
+  public  function postAdd(ProductRequest $request)
+    {
+    $message = [
+        'product_name.required' => 'Tên sản phẩm bắt buộc phải nhập',
+            'product_price.min' => 'Tên sản phẩm không được ngỏ hơn:min ký tự',
+            'product_price.required'=>'Gía sản phẩm bắt buộc phải nhập',
+            'product_price.integer' => 'Trường : attribute phải là số'
+    ];
+
+
+    $attributes =[
+            'product_name' => 'tên sản phẩm',
+            'product_price' => 'giá sản phẩm'
+    ];
+    
+
+//     $validator = Validator::make($request->all()),$rules,$message,$attributes);
+//     if ($validator->fails()){
+// //  return 'validator thất bại'
+//     }else{
+//             return redirect()->route('product')->with('msg')
+//     }
+//     return back()->withErrors($validator);
+
+
+  }
+  //     public function getAdd(){
+//         $this->data['title'] ='thêm sản phẩm';
+//         $this->data['errorMeZ']
+//         return view('clients.add', $this->data);
+//    
     // dd($request);//
     //   $request->validate(
     // [
@@ -43,14 +69,14 @@ class HomeController extends Controller
     //     'integer'=>'Trường : attribute phải là số'
     // // ];
     // $request->validate($rules,$mesage);
-     }
-     public function putAdd(Request $request){
-        return 'phuogw thức put ';
-        dd($request);
+    //  }
+    //  public function putAdd(Request $request){
+    //     return 'phuogw thức put ';
+    //     dd($request);
 
 
          
-    }
+    // }
     public function putArr(Request $request)
     {
 

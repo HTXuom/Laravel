@@ -38,17 +38,23 @@ class ProductRequest extends FormRequest
     ];
  }
  protected function prepareForValidator($validator){
-   // $validator->after(function ($validator){
-   //    // if($this->somethingElseIsInvalid()){
-   //    //       $validator->error()->add('msg','đã xảy ra lỗi vui lòng kiểm tra');
-   //    // }
-   //    if ($validator->errors()->count()>0){
-   //          $validator->errors()->add('msg', 'đã xảy ra lỗi vui lòng kiểm tra');
-   //    }
+   $validator->after(function ($validator){
+       if($validator->error()){
+            $validator->error()->add('msg','đã xảy ra lỗi vui lòng kiểm tra');
+      }
+      if ($validator->errors()->count()>0){
+            $validator->errors()->add('msg', 'đã xảy ra lỗi vui lòng kiểm tra');
+      }
    
-   // });
+   });
    $this->merge([
       'create_at'=>date('Y-M-D H:i:s')
+   ]);
+ }
+ protected function prepareForValidation()
+ {
+   $this->merge([
+'create_at'=>date('Y-m-d H:i:s'),
    ]);
  }
  protected function failedAuthorization(){

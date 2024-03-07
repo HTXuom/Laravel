@@ -10,11 +10,14 @@
 @endsection
 
 @section('content')
-<h1>Trang chủ</h1>
-@datetime('2021-12-15:00:00:30')
-@include('clients.contents.slide')
-@include('clients.contents.about')
-<button type='button' class='show'>Show</button>
+@if(section('msg'))
+<div class="alert alert-success">{{section('msg')}}</div>
+@endif
+<h1>Sanr Phaamr</h1>
+@push('scripts')
+<script>
+    console.log('push laanf 2');
+</script>
 @endsection
 
 @section('css')
