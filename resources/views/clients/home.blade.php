@@ -8,6 +8,10 @@
 @endsection
 
 @section('content')
+@if(section('msg'))
+<div class="alert alert-info">
+    {{section('msg')}}
+</div>
 <h1>Trang chủ</h1>
 @include('clients.contents.slide')
 @include('clients.contents.about')

@@ -20,11 +20,12 @@ class HomeController extends Controller
     }
     public function getAdd(){
         $this->data['title'] ='thêm sản phẩm';
+        $this->data['errorMessage']= 'vui lòng kiểm tra dữa liệu';
         return view('clients.add', $this->data);
 
     }
    function postAdd( ){
-    // dd($request);
+    // dd($request);//
     //   $request->validate(
     // [
     //     'product_name'=>'required/min:6',
