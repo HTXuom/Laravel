@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Auth\Events\Validated;
 
+use App\Rules\Uppercase;
+
 class HomeController extends Controller
 {
     public $data = [];
@@ -27,16 +29,17 @@ class HomeController extends Controller
             'product_price.min' => 'Tên sản phẩm không được ngỏ hơn:min ký tự',
             'product_price.required'=>'Gía sản phẩm bắt buộc phải nhập',
             'product_price.integer' => 'Trường : attribute phải là số'
+            // 'uppercase'=>'trường: attribute phải viết hoa '
     ];
 
 
     $attributes =[
-            'product_name' => 'tên sản phẩm',
-            'product_price' => 'giá sản phẩm'
+            'product_name' =>['required','min:6',new Uppercase],
+            'product_price' => ['required','integer', new Uppercase]
     ];
     
 
-//     $validator = Validator::make($request->all()),$rules,$message,$attributes);
+//     // $validator = Validator::make($request->all()),$rules,$message,$attributes);
 //     if ($validator->fails()){
 // //  return 'validator thất bại'
 //     }else{
