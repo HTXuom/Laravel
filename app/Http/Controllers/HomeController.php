@@ -22,7 +22,13 @@ class HomeController extends Controller
         return view('clients.home', $this->data);
     }
 
-  public  function postAdd(ProductRequest $request)
+  public  function postAdd(ProductRequest $request){
+  $rules =[
+    'product_name'=>['required','min:6',function($attribute,$value,$fail){
+        isUppercase($value,'trường:atribute không hợp lệ' ,$fail);
+    }],
+    'prtoduct_price'=>['required','integer']
+];
     {
     $message = [
         'product_name.required' => 'Tên sản phẩm bắt buộc phải nhập',
@@ -79,7 +85,7 @@ class HomeController extends Controller
 
 
          
-    // }
+     }
     public function putArr(Request $request)
     {
 
@@ -120,6 +126,11 @@ class HomeController extends Controller
                 'content-Type'=>'application/pdf'
             ];
             return response()->download($file, $fileName);
+        }
+    }
+    public function isUppercase($fail,$value,$message){
+        if($value!=mb_strtoupper($value,'UTF-8')){
+        $fail($message);
         }
     }
 }
