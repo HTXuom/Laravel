@@ -23,6 +23,7 @@ class HomeController extends Controller
     }
 
   public  function postAdd(ProductRequest $request){
+   
   $rules =[
     'product_name'=>['required','min:6',function($attribute,$value,$fail){
         isUppercase($value,'trường:atribute không hợp lệ' ,$fail);
@@ -45,16 +46,21 @@ class HomeController extends Controller
     ];
     
 
-//     // $validator = Validator::make($request->all()),$rules,$message,$attributes);
+        //   $validator = Validator:make($request->all(̣), $rules, $message, $attribute);
+        //     $validator->validate();
+            $request->validate($rules,$message);
+            return response()->Json(['status'=>'success']);
+
+    // $validator = Validator::make($request->all()),$rules,$message,$attributes);
 //     if ($validator->fails()){
 // //  return 'validator thất bại'
 //     }else{
 //             return redirect()->route('product')->with('msg')
 //     }
 //     return back()->withErrors($validator);
+}
 
-
-  }
+  
   //     public function getAdd(){
 //         $this->data['title'] ='thêm sản phẩm';
 //         $this->data['errorMeZ']

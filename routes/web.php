@@ -26,7 +26,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/san-pham', [HomeController::class, 'Products'])->name('product');
 
 Route::get('/them-san-pham', [HomeController::class, 'getAdd']);
-Route::get('/themsan-pham', [HomeController::class, 'postAdd']);
+Route::get('/themsan-pham', [HomeController::class, 'postAdd'])->name('post-add');
 
 
 Route::get('/', function () {

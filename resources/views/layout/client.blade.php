@@ -26,9 +26,11 @@
         <h1> Footer</h1>
     </footer>
     <script type="text/javascript">
-    @yield ('js')
+
     </script>
         
-    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        @yield ('js')
+        @stack('scripts')
 </body>
 </html>
