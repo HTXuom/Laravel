@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\ProductController;
+// use App\Http\Controllers\ UsersController;
 
 use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Http\Response;
@@ -87,3 +88,7 @@ Route::post('demo-response', function (Request $request) {
 //     return $response;
 // });
  Route::get('download-image/{link}',[HomeController::class,'downloadImage'])->name('download-image');
+
+//  Route::prefix('users')->group(function(){
+//    Route::get('/',[UsersController::class,'index']);
+//  });
