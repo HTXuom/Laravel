@@ -22,4 +22,13 @@ class Users extends Model
     {
         DB::insert('INSERT INTO users (name,email,created_at) VALUES (?, ?, ?)', $data); // Corrected 'create_at' to 'created_at' and 'value' to 'VALUES'
     }
+    public function getDetail($id){
+       return  DB::select('SELECT *FROM'.$this->table.'WHERE id =? ',[$id]);
+    }
+    public function updateUser($data,$id){
+        $data []= $id;
+        return DB:: update('UPDATE ' . $this->table . 'SET fullname=?,email=?.update_at id =? '.$id);
+    }
+    
+
 }
