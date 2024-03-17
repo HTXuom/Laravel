@@ -38,15 +38,23 @@ class Users extends Model
 
         public function learnQueryBuilder(){
             //LẤY TẤT CẢ BẢN GHI CỦA TABLE 
-            $title = DB::table($this->table)
-            // ->where('id','>=','19')
-            // ->where('id','>=','19')
-            ->select('fullname as hoten','email','id')
-            // ->where('id',19)
-            ->where('id',19)
-            ->orwhere('id',10)
+            DB::enableQueryLog();
+            $id=20;
+            $title = DB::table($this->table)->select('fullname as hoten', 'email', 'id','update_at')
+        //     ->where('id',18)
+
+        //     ->where(function($query) use ($id){
+        //     $query->where('id','<',$id)->orWhere('id','<',$id);
+        //     } )
+        //    ->where('fullname','like','%thi xuom%')
+        //     ->whereBetween('id',[18,2O])
+        //     ->whereNotIn('id',[18,2O])
+            ->whereNotNull('update_at')
             ->get();
-            dd($title);
+            //->tosql();
+
+            $sql = DB::enableQueryLog();
+            dd($sql);
             //LẤY 1 BẢN GHI ĐẦU TIÊN CỦA TABLE
                $detail = DB::table($this->table)->first();
 
