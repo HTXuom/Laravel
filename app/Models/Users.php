@@ -36,4 +36,20 @@ class Users extends Model
          return DB::statement($sql);
         }
 
+        public function learnQueryBuilder(){
+            //LẤY TẤT CẢ BẢN GHI CỦA TABLE 
+            $title = DB::table($this->table)
+            // ->where('id','>=','19')
+            // ->where('id','>=','19')
+            ->select('fullname as hoten','email','id')
+            // ->where('id',19)
+            ->where('id',19)
+            ->orwhere('id',10)
+            ->get();
+            dd($title);
+            //LẤY 1 BẢN GHI ĐẦU TIÊN CỦA TABLE
+               $detail = DB::table($this->table)->first();
+
+        }
+
 }
