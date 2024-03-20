@@ -53,8 +53,21 @@ class Users extends Model
             //->whereYear('update_at','2022')
             //->whereColum('update_at','<>','update_at')
             //join bang
-             $lists = DB::table($this->table)->select('users.*', 'group.name as group_name', 'id')
-             ->right_Join('groups','users.group_id','=','groups.id')
+             $lists = DB::table('users')
+             
+             //->select('users.*', 'group.name as group_name', 'id')
+            //  ->right_Join('groups','users.group_id','=','groups.id')
+            //  ->orderBy('id','desc')
+            //  ->orderBy('create_at', 'asc')
+            //  ->inRandomOrder()
+            //  ->select(DB::raw('count(id)as email_count','email','fullname')
+            //  ->groupBy('email')
+            // ->groupBy('fullname')
+            // ->having('email_count','>=',2)
+            // ->limit(2)
+            // ->offset(2)
+            ->take(2)
+            ->skip(2)
             ->get();
             //->tosql();
               dd($lists);
