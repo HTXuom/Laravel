@@ -39,20 +39,25 @@ class Users extends Model
         public function learnQueryBuilder(){
             //LẤY TẤT CẢ BẢN GHI CỦA TABLE 
             DB::enableQueryLog();
-            $id=20;
-            $title = DB::table($this->table)->select('fullname as hoten', 'email', 'id','update_at')
-        //     ->where('id',18)
+            // $id=20;
+          
+            //     ->where('id',18)
 
-        //     ->where(function($query) use ($id){
-        //     $query->where('id','<',$id)->orWhere('id','<',$id);
-        //     } )
-        //    ->where('fullname','like','%thi xuom%')
-        //     ->whereBetween('id',[18,2O])
-        //     ->whereNotIn('id',[18,2O])
-            ->whereNotNull('update_at')
+            //     ->where(function($query) use ($id){
+            //     $query->where('id','<',$id)->orWhere('id','<',$id);
+            //     } )
+            //    ->where('fullname','like','%thi xuom%')
+            //     ->whereBetween('id',[18,2O])
+            //     ->whereNotIn('id',[18,2O])
+            // ->whereNotNull('update_at')
+            //->whereYear('update_at','2022')
+            //->whereColum('update_at','<>','update_at')
+            //join bang
+             $lists = DB::table($this->table)->select('users.*', 'group.name as group_name', 'id')
+             ->right_Join('groups','users.group_id','=','groups.id')
             ->get();
             //->tosql();
-
+              dd($lists);
             $sql = DB::enableQueryLog();
             dd($sql);
             //LẤY 1 BẢN GHI ĐẦU TIÊN CỦA TABLE
