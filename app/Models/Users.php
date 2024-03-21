@@ -53,7 +53,7 @@ class Users extends Model
             //->whereYear('update_at','2022')
             //->whereColum('update_at','<>','update_at')
             //join bang
-             $lists = DB::table('users')
+             //$lists = DB::table('users')
              
              //->select('users.*', 'group.name as group_name', 'id')
             //  ->right_Join('groups','users.group_id','=','groups.id')
@@ -66,11 +66,41 @@ class Users extends Model
             // ->having('email_count','>=',2)
             // ->limit(2)
             // ->offset(2)
-            ->take(2)
-            ->skip(2)
-            ->get();
+            // ->take(2)
+            // ->skip(2)
+            // ->get();
             //->tosql();
-              dd($lists);
+              //dd($lists);
+
+        // DB::table('users')->insert([
+        //     'fullname'=>'Nguyễn văn A',
+        //     'email'=>'xuomho25@.com',
+        //     'group_id'=>1
+        //     'create_at'=> date('y-m-d H:i:s')
+        // ]);
+         
+        // dd($lastId);
+
+        // $status =DB::table('users')
+        // ->where('id',29)
+        // ->update([
+        //     'fullname'=>'Nguyên văn B',
+        //     'email'=>'xuho25@.com',
+        //     'update'=>date('y-m-d H:i:s')
+        // ]);
+
+        // $status= DB::table('users')
+        // ->where('id',20)
+        // ->delete();
+
+        //Điểm sô ban ghi 
+
+        $count =DB::table('users')->where('id','>',20)->count();
+        // $count =count{$lists};
+        // dd($count);
+
+
+
             $sql = DB::enableQueryLog();
             dd($sql);
             //LẤY 1 BẢN GHI ĐẦU TIÊN CỦA TABLE
