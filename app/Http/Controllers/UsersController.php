@@ -14,20 +14,37 @@ class UsersController extends Controller
         $this->users = new Users();
     }
 
-    public function index()
+    public function index(Request $request)
 
     {
 
-        $statement =$this->users->statementUser("DELETE FROM users");
+        $statement = $this->users->statementUser("DELETE FROM users");
         dd($statement);
 
         $title = "Danh sách người dùng";
 
-      $this->users->learnQueryBuilder();
+        //$this->users->learnQueryBuilder();
+        $filters = [];
 
-        $usersList = $this->users->getAllUsers();
+        $keywords =null;
+        if (!empty($request->group_id)) {
+            $groupId= $request->group_id;
+
+            $filters[] = ['users.group_id', '=', $groupId];
+        }
+        if (!empty($request->keywords)) {
+            $keywords = $request->keywords;
+
+            // $filters[] = ['users.group_id', '=', $groupId];
+        }
+
+
+
+
+        $usersList = $this->users->getAllUsers($filters, $keywords);
         // return view('clients.users.lists', compact('title', 'usersList'));
     }
+
 
     public function add()
     {
@@ -57,30 +74,32 @@ class UsersController extends Controller
         $this->users->addUser($dataInsert);
         return redirect()->route('users.index')->with('msg', 'Thêm người dùng thành công.');
     }
-    public function getEdit(Request $request ,$id=0){
-        $title ="Cập nhật người dùng";
-        if(!empty($id)){
-           $userDetail = $this->users->getDetail($id);
-           if(!empty($userDetail[0])){
-            $request->session()->put('id'.$id);            $userDetail = $userDetail[0];
-           }else{
-            return redirect()->route('users.index')->with('msg','người dùng không cập nhật');
-           }
-        }else{
-            return redirect()->route('users.index')->with('msg','Liên kết không tồn tại');
+    public function getEdit(Request $request, $id = 0)
+    {
+        $title = "Cập nhật người dùng";
+        if (!empty($id)) {
+            $userDetail = $this->users->getDetail($id);
+            if (!empty($userDetail[0])) {
+                $request->session()->put('id' . $id);
+                $userDetail = $userDetail[0];
+            } else {
+                return redirect()->route('users.index')->with('msg', 'người dùng không cập nhật');
+            }
+        } else {
+            return redirect()->route('users.index')->with('msg', 'Liên kết không tồn tại');
         }
-        return view('clients.users.edit',compact('title','userDetail'));
-
+        return view('clients.users.edit', compact('title', 'userDetail'));
     }
-    public function postEdit(Request $request){
-        $id= session('id');
-        if(empty($id)){
-            return back()->with('msg','Liên kết không tồn tại');
+    public function postEdit(Request $request)
+    {
+        $id = session('id');
+        if (empty($id)) {
+            return back()->with('msg', 'Liên kết không tồn tại');
         }
         $request->validation([
-            'fullname'=>'required|min:5',
-            'email'=>'required|email|unique:users,email,'.$id
-        ],[
+            'fullname' => 'required|min:5',
+            'email' => 'required|email|unique:users,email,' . $id
+        ], [
             'fullname.required' => 'Họ và tên bắt buộc nhập.',
             'fullname.min' => 'Họ và tên phải từ :min ký tự trở lên.',
             'email.required' => 'Email bắt buộc phải nhập.',
@@ -88,37 +107,33 @@ class UsersController extends Controller
             'email.unique' => 'Email đã tồn tại trên hệ thống.'
 
         ]);
-        $dataUpdate =[
+        $dataUpdate = [
             $request->fullname,
             $request->email,
             date('Y-m-d H:i:s')
         ];
         $this->users->updateUser($dataUpdate, $id);
-        return back()->with('msg','Cập nhật thành công');
+        return back()->with('msg', 'Cập nhật thành công');
     }
 
-    public function delete($id=0){
+    public function delete($id = 0)
+    {
         if (!empty($id)) {
             $userDetail = $this->users->getDetail($id);
             if (!empty($userDetail[0])) {
-                 $deleteStatus =$this ->users->deleteUser($id);
-                 if($deleteStatus){
-                    $msg='xóa người dùng thành công';
-
-                 }else{
+                $deleteStatus = $this->users->deleteUser($id);
+                if ($deleteStatus) {
+                    $msg = 'xóa người dùng thành công';
+                } else {
                     $msg = 'Bạn không thể xóa người dùng  ngày lúc này.Vui lòng thử lại ';
-                 }
-
-
+                }
             } else {
-                $msg ='người dùng không tôn tại';
+                $msg = 'người dùng không tôn tại';
             }
         } else {
-            $msg = 'Liên kết không tồn tại';  
+            $msg = 'Liên kết không tồn tại';
         }
-        
+
         return redirect()->route('users.index')->with('msg', $msg);
-
     }
-
 }

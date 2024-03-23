@@ -12,9 +12,28 @@ class Users extends Model
 
     protected $table = 'users';
 
-    public function getAllUsers()
+    public function getAllUsers($filters =[],$keywords=null)
     {
-        $users = DB::select('SELECT * FROM users ORDER BY created_at DESC'); // Corrected 'create_at' to 'created_at'
+        // $users = DB::select('SELECT * FROM users ORDER BY created_at DESC'); // Corrected 'create_at' to 'created_at'
+        DB::enableQueryLog();
+        $users = DB::table($this->table)->get();
+        ->select('users.*','group.name as group_name')
+        ->join('groups','users.group_id','=','group.id')
+        ->orderBy('users.create_at','DESC')
+        ->get();
+        if(!empty($filters)){
+            $users = $users->where($filters);
+        }
+        if(!empty($keywords)){
+      
+            $users = $users->where(function($query)use($keywords){
+                $query->orwhere('fullname','like','%'.$keywords.'%');
+                $query->orwhere('email', 'like', '%' . $keywords . '%');
+            });
+        }
+        //$users =$users->get();
+       // $sql = DB::enableQueryLog();
+        dd($sql);
         return $users;
     }
 
@@ -119,10 +138,10 @@ class Users extends Model
         // )
          //->selectRaw('email,(SELECT count(id) FROM 'groups') as group_count'))
 
-         ->selectRaw('email,(SELECT count(id) FROM 'groups') as group_count')
+         //->selectRaw('email,(SELECT count(id) FROM 'groups') as group_count')
             
 
-        ->get();
+        //->get();
 
             $sql = DB::enableQueryLog();
             dd($sql);
