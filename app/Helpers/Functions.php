@@ -7,7 +7,7 @@ function isUppercase($fail,$value,$message){
     }
 
 
-    function getAllgroup(){
+    function getAllGroup(){
         $groups = new Groups;
     return Groups::getAll();
     }

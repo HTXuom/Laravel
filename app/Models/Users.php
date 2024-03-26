@@ -62,7 +62,8 @@ class Users extends Model
 
     public function addUser($data)
     {
-        DB::insert('INSERT INTO users (name,email,created_at) VALUES (?, ?, ?)', $data); // Corrected 'create_at' to 'created_at' and 'value' to 'VALUES'
+       // DB::insert('INSERT INTO users (name,email,created_at) VALUES (?, ?, ?)', $data); // Corrected 'create_at' to 'created_at' and 'value' to 'VALUES'
+       return DB::table($this->table)->insert($data)
     }
     public function getDetail($id){
        return  DB::select('SELECT *FROM'.$this->table.'WHERE id =? ',[$id]);
