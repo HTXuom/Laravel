@@ -12,7 +12,7 @@ class Users extends Model
 
     protected $table = 'users';
 
-    public function getAllUsers($filters =[],$keywords=null,$sortByArr =null)
+    public function getAllUsers($filters =[],$keywords=null,$sortByArr =null,$perPage =null)
     {
         // $users = DB::select('SELECT * FROM users ORDER BY created_at DESC'); // Corrected 'create_at' to 'created_at'
         DB::enableQueryLog();
@@ -50,6 +50,13 @@ class Users extends Model
         //$users =$users->get();
        // $sql = DB::enableQueryLog();
         //dd($sql);
+
+        if(!empty($perPage)){
+            $users = $users->paginate($perPage)->withQueryString();
+
+        }else{
+            $users =$users->get();
+        }
         return $users;
     }
 
