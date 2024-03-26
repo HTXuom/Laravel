@@ -38,11 +38,30 @@ class UsersController extends Controller
             // $filters[] = ['users.group_id', '=', $groupId];
         }
 
+    //    XỬ LÝ LOGIC SẮP XẾP 
 
+     $sortBy = $request->input('sort-by');
+     $sortType = $request->input('sort-type');
+      $allowSort = ['asc','desc'];
+      if(!empty($sortType)&& in_array($sortType,$allowSort)){
+        if($sortType=='desc'){
+            $sortType='asc';
 
+        }else{
+            $sortType ='desc';
 
-        $usersList = $this->users->getAllUsers($filters, $keywords);
-        // return view('clients.users.lists', compact('title', 'usersList'));
+        }
+      }else{
+        $sortType='asc';
+
+      }
+      $sortArr =[
+        'sortBy'=>$sortBy,
+        'sortType'=>$$sortType
+      ];
+
+        $usersList = $this->users->getAllUsers($filters, $keywords, $sortArr);
+        return view('clients.users.lists', compact('title', 'usersList','sortType'));
     }
 
 

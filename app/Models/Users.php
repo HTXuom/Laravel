@@ -12,15 +12,31 @@ class Users extends Model
 
     protected $table = 'users';
 
-    public function getAllUsers($filters =[],$keywords=null)
+    public function getAllUsers($filters =[],$keywords=null,$sortByArr =null)
     {
         // $users = DB::select('SELECT * FROM users ORDER BY created_at DESC'); // Corrected 'create_at' to 'created_at'
         DB::enableQueryLog();
-        $users = DB::table($this->table)->get();
+        $users = DB::table($this->table)
         ->select('users.*','group.name as group_name')
         ->join('groups','users.group_id','=','group.id')
-        ->orderBy('users.create_at','DESC')
-        ->get();
+       
+        $sortByArr ='users.create_at';
+        $orderType ='desc';
+
+
+
+        
+        if (!empty($sortByArr) && is_array($sortByArr)) {
+            if(!empty($sortByArr['sostBy']) && !empty($sortByArr['sortType'])){
+                $sortByArr=trim($sortByArr['sortBy']);
+                $orderType = trim($sortByArr['sortType']);
+            }
+        }
+
+
+        $users =$users->orderBy($orderBy, $sortType);
+        
+
         if(!empty($filters)){
             $users = $users->where($filters);
         }
@@ -33,7 +49,7 @@ class Users extends Model
         }
         //$users =$users->get();
        // $sql = DB::enableQueryLog();
-        dd($sql);
+        //dd($sql);
         return $users;
     }
 
